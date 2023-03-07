@@ -1,13 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="page" lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Potr Pots</title>
     <link rel="stylesheet" href="./styles/main.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
-  <body>
-    <h1>Hello Mate Academy</h1>
+  <body class="page__body">
+     <!-- Header content goes here -->
+    <header class="header page__header">
+      <div class="header__logo">
+        POTR POTS
+      </div>
+      <div class="header__nav">
+        <div class="header__nav-bar">
+          <a href="#features" class="header__link">
+            Features
+          </a>
+          <a href="#about-us" class="header__link">
+            About us
+          </a>
+          <a href="#materials" class="header__link">
+            Materials
+          </a>
+          <a href="#message-us" class="header__link">
+            Message us
+          </a>
+          <a href="#menu" class="header__icon"></a>
+          <div class="header__icon--shop"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menu goes here -->
+      <div id="menu" class="menu page__menu">
+        <div class="menu__block">
+          <div class="menu__link menu__link--basket">Basket</div>
+          <div class="menu__link"> Features</div>
+          <div class="menu__link">Materials</div>
+          <div class="menu__link">About us</div>
+          <div class="menu__link">Message us</div>
+          <a href="#" class="menu__close-button">
+            <div class="menu__cross">
+              <img  src="./images/cross.svg" alt="cross">
+            </div>
+            <img class="menu__stick" src="./images/stick.svg" alt="stick">
+            <div class="menu__button-text">Close</div>
+          </a>
+        </div>
+        <a href="#" class="menu__background"></a>
+      </div>
+      
+    
+    <!-- Overlay content goes here -->
+    <div id="overlay" class="overlay">
+      <div class="overlay__content">
+        <div class="overlay__title">
+          My apologies.
+        </div>
+        <div class="overlay__button">
+          <img class="overlay__multiply" src="./images/multiply.png" alt="multiply">                  
+        </div>
+        <div class="overlay__text">
+          This is my landing page, but not official website,
+          fortunately, you can order it on 
+          <a target="_blank" class="overlay__link" href="https://potrpots.com/">
+            official website
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+
+     <!-- Main content goes here -->
+    <main class="main-container">
+      <div class="main-container__top-trapese"></div>
+      
+      <article class="main-screen">
+          <img class="main-screen__image" src="./images/SMall-pot.png" alt="">
+          <div class="main-screen__content">
+            <div class="main-screen__title-container">
+              <div class="main-screen__title main-screen__title--transparent">
+                POTR ~ Eco,
+                <br>
+                self -
+              </div>
+              <div class="main-screen__title">
+                watering,
+                <br>
+                origami
+              </div>
+              <div class="main-screen__title main-screen__title--transparent">
+                plant
+                <br>
+                <div class="main-screen__title">
+                  pots
+                </div>
+              </div>
+            </div>
+            <div class="main-screen__price">
+              $ 7,50
+            </div>
+            <div class="main-screen__text">
+              Get the second order 
+              <br>
+              in half price
+            </div>
+            <div class="main-screen__button">
+              Buy now
+              <img class="main-screen__arrow" src="./images/Arrow 2.svg" alt="arrow">              
+            </div>
+          </div>
+          <div class="main-screen__vertical-link">
+            More about  POTR POTS
+          </div>
+        </article>
+    </main>
+    
+
     <script type="text/javascript" src="scripts/main.js"></script>
   </body>
 </html>

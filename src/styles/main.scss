@@ -1,7 +1,530 @@
 @import "utils";
 @import "fonts";
-@import "typography";
 
-body {
-  background: $c-gray;
+* {
+  box-sizing: border-box;
 }
+
+.page {
+  margin: 0;
+  
+  &__body {
+    margin: 0;
+  }
+
+  &__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 4;
+
+    &:target {
+      transform: translateX(0);
+    }
+
+    &:target .menu__block {
+      transform: translateX(0);
+    }
+  }
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+}
+
+.header {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition-duration: .3s;
+
+  @include container;
+
+  @include onTablet {
+    padding: 20px 35px;
+  }
+
+  @include onDesktop {
+    padding: 20px 135px;
+  }
+    
+  &--filled {
+    background-color: #fff;
+    position: fixed;
+    z-index: 3;
+  }
+
+  &__icon {
+    background-image: url(./../images/menu_icon.svg);
+    width: 32px;
+    height: 32px;
+    margin-left: 15vw;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    @include onDesktop {
+      display: none;
+    }
+
+    &--shop {
+      @include onDesktop {
+        margin-left: 15vw;
+        background-size: cover;
+        background-image: url(./../images/shop.svg);
+        width: 37px;
+        height: 37px;
+        justify-self: end;
+        cursor: pointer;
+        transition: rotate 0.3s ease-in-out;
+
+        &:hover {
+          rotate: 15deg;
+          color: $full-black;
+        }
+      }
+    }
+}
+
+  &__logo {
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    cursor: pointer;
+  
+    color: $black;
+    text-decoration: none;
+    transition: scale 0.3s ease-in-out;
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
+
+  &__nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__link {
+    display: none;
+    font-family: 'Manrope';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration: none;
+    color: $grey;
+    white-space: nowrap;
+    margin: 5px 10px;
+    padding: 5px 20px;
+    transition: rotate 0.3s;
+
+    @include onDesktop {
+      display: block;
+    }
+
+    &:hover {
+      rotate: 10deg;
+    }
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  transition: transform ease-in-out;
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 231px;
+    height: 100vh;
+    background-color: $turquoise;
+    transition-duration: 0.3s;
+    transform: translateX(100%);
+
+    // @media (min-width:)
+  }
+
+  &__background {
+    display: block;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition-duration: 0;
+  }
+
+  &__link {
+    font-family: 'Manrope';
+    line-height: 150%;
+    color: $white;
+    margin-bottom: 5vh;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+
+
+    &:hover {
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  &__close-button {
+    position: absolute;
+    bottom: 60px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $white;
+    font-family: 'Manrope';
+    font-size: 12px;
+    line-height: 150%;
+    transform: rotate(-90deg);
+    margin-left: 181px;
+
+    &:hover .menu__cross{
+      rotate: 90deg;
+    }
+  }
+
+  &__cross {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: rotate 0.3s ease-in-out;
+  }
+
+  &__stick {
+    rotate: (-90deg);
+    margin-left: 40px;
+  }
+
+  &__button-text{
+    margin-left: 30px;
+    text-transform: uppercase;
+  }
+}
+
+.main-container {
+
+  &__top-trapese {
+
+    @include onTablet {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: calc(85vw);
+      height: 425px;
+      border-left: calc(85vw) solid #ffec7a;
+      border-bottom: 212.5px solid transparent;
+    }
+
+    @include onDesktop {
+      border-left: calc(85vw - 172px) solid #ffec7a;
+    }
+  }
+}
+
+.main-screen {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1500px;
+    margin: auto;
+    padding: 60px 0 100px;
+
+    @include onTablet {
+      padding: 120px 35px 60px;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @include onDesktop {
+      padding: 140px 135px;
+    }
+
+  &__image {
+    display: block;
+    max-height: 100vw;
+    width: 100vw;
+    margin-bottom: 20px;
+    object-fit: cover;
+
+    @include onTablet {
+      width: 35vw;
+      height: 35vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+      width: 70vw;
+      height: 70vw;
+    }
+
+    @media (max-width: 500px) {
+      width: 100vw;
+      height: 100vw;
+    }
+
+    @include onDesktop {
+      transition: scale 0.3s ease-in-out;
+
+      &:hover {
+        scale: 1.03;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    @include onTablet {
+      position: absolute;
+      z-index: 2;
+      left: 35px;
+    }
+
+    @media (max-width:600px) {
+      width: 80vw;
+    }
+
+    @media (max-width: 767px) {
+      position: static;
+    }
+
+    @include onDesktop {
+      left: 135px;
+    }
+  }
+
+  &__title-container {
+    white-space: nowrap;
+    margin-bottom: 30px;
+
+    @include onDesktop {
+      margin-bottom: 20px;
+      transition: scale 0.3s ease-in-out;
+
+      &:hover {
+        scale: 1.03;
+        cursor: default;
+      }
+    }
+  }
+
+  &__title {
+    display: inline;
+    font-family: 'Bebas Neue';
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 43px;
+
+    letter-spacing: 0.155em;    text-transform: uppercase;
+    color: $blue;
+    width: 100%;
+
+    &--transparent {
+      color: transparent;
+      -webkit-text-stroke: 1px $blue;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 64px;
+      line-height: 64px;
+    }
+  }
+
+  &__price {
+    font-family: "Manrope";
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 36px;
+    color: $black;
+
+    @include onTablet {
+      margin-left: 240px;
+    }
+
+    @include onDesktop {
+      margin-left: 300px;
+    }
+  }
+
+  &__text {
+    font-family: "Manrope";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: $grey;
+    margin-bottom: 20px;
+
+    @include onTablet {
+      margin-bottom: 50px;
+      margin-left: 240px;
+    }
+
+    @include onDesktop {
+      margin-left: 300px;
+    }
+  }
+
+  &__vertical-link {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    transform: rotate(90deg);
+    position: absolute;
+    bottom: 10%;
+    right: -40px;
+
+    @include onTablet {
+      bottom: -100%;
+      right: -40px;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    height: 48px;
+    background-color: $yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    font-family: 'Manrope';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #121;
+
+    @include onTablet {
+      width: 240px;
+      margin-left: 140px;
+    }
+
+    @include onDesktop {
+      width: 270px;
+      margin-left: 225px;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+    
+    &:hover .main-screen__arrow {
+      transform: translateX(70%);
+      animation: 0.3s ease-in-out;
+    }
+  }
+
+  &__arrow {
+    margin-left: 5px;
+    transition: transform 0.3s;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
+  z-index: 3;
+
+  &.appear {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+  
+  &__content {
+    position: absolute;
+    padding: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 60%;
+    height: 50vh;
+    border-radius: 10px;
+    font-family: 'Manrope';
+    color: $full-black;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 60px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 170%;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #00acdc;
+    margin-right: -4px;
+  }
+
+  &__button {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 60px;
+    height: 60px;
+    background-color: $full-black;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+
+
+    &:hover {
+      transform: rotate(180deg);
+    }
+    
+  }
+
+  &__multiply {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
