@@ -1,35 +1,17 @@
 'use strict';
 
-const header = document.querySelector('.header');
-let prevScrollpos = window.pageYOffset;
+function handleHeaderScroll() {
+  const header = document.querySelector('header');
+  const scrollTop = window.scrollY;
 
-window.onscroll = function() {
-  let currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos || currentScrollPos === 0) {
-    header.style.top = '0';
+  if (scrollTop > 0) {
     header.classList.add('header--filled');
   } else {
-    header.style.top = '-100px';
     header.classList.remove('header--filled');
-  }
-  prevScrollpos = currentScrollPos;
-};
-
-
-// header transparency logic
-
-const headertwo = document.querySelector('.header');
-
-function toggleHeaderClass() {
-  if (window.scrollY === 0) {
-    header.classList.remove('header--filled');
-  } else {
-    header.classList.add('header--filled');
   }
 }
 
-// Add event listener for scroll
-window.addEventListener('scroll', toggleHeaderClass);
+window.addEventListener('scroll', handleHeaderScroll);
 
 // reloading page when pressing logo
 
@@ -68,7 +50,8 @@ function turnOnOverlay() {
 // Call the function to turn on the overlay
 turnOnOverlay();
 
-// scroll disable when hash is menu
+// scroll disable when hash is menu and when overlay is active
+// menu
 
 window.addEventListener("hashchange", function() {
   if (window.location.hash === "#menu") {
@@ -77,4 +60,29 @@ window.addEventListener("hashchange", function() {
     document.body.style.overflow = "";
   }
 });
+
+// overflow
+
+function disableScroll() {
+  const page = document.querySelector('.page');
+  page.style.overflow = 'hidden';
+}
+
+function enableScroll() {
+  const page = document.querySelector('.page');
+  page.style.overflow = '';
+}
+
+const overlay = document.querySelector('.overlay');
+
+overlay.addEventListener('transitionend', function() {
+  if (overlay.classList.contains('appear')) {
+    disableScroll();
+  } else {
+    enableScroll();
+  }
+});
+
+
+
 

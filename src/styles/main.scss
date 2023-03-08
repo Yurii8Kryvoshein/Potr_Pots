@@ -33,7 +33,6 @@
     top: 0;
     left: 0;
   }
-
 }
 
 .header {
@@ -148,11 +147,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: fixed;
     width: 231px;
     height: 100vh;
     background-color: $turquoise;
+    padding-top: 15vh;
     transition-duration: 0.3s;
     transform: translateX(100%);
 
@@ -184,7 +183,7 @@
 
   &__close-button {
     position: absolute;
-    bottom: 60px;
+    bottom: 100px;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -246,6 +245,7 @@
     display: flex;
     justify-content: flex-end;
     max-width: 1500px;
+    height: fit-content;
     margin: auto;
     padding: 60px 0 100px;
 
@@ -277,6 +277,13 @@
       height: 35vw;
       position: relative;
       z-index: 1;
+    }
+
+
+
+    @media (min-width: 1440px) {
+      width: 500px;
+      height: 500px;
     }
 
     @media (max-width: 767px) {
@@ -323,10 +330,10 @@
 
   &__title-container {
     white-space: nowrap;
-    margin-bottom: 30px;
+    margin-bottom: 5vh;
 
     @include onDesktop {
-      margin-bottom: 20px;
+      margin-bottom: 3vh;
       transition: scale 0.3s ease-in-out;
 
       &:hover {
@@ -380,10 +387,10 @@
     font-size: 14px;
     line-height: 150%;
     color: $grey;
-    margin-bottom: 20px;
+    margin-bottom: 3vh;
 
     @include onTablet {
-      margin-bottom: 50px;
+      margin-bottom: 5vh;
       margin-left: 240px;
     }
 
@@ -398,14 +405,62 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 150%;
+  }
+
+  &__arrow-button-container {
+    display: none;
+    align-items: center;
     transform: rotate(90deg);
     position: absolute;
-    bottom: 10%;
-    right: -40px;
+    bottom: 20%;
+    right: -15%;
+
+    cursor: pointer;
+    padding-right: 40px;
+    color: $blue;
+
+    &:hover .main-screen__arrow--rotated {
+      transform: translate(10px) rotate(-90deg);
+    }
+
+    @for $i from 1 through 16 {
+      $min-width: 320px + ($i - 1) * 20px;
+      $right: -26% + ($i - 1) * 1%;
+    
+      @media (min-width: $min-width) {
+        right: $right;
+        display: flex;
+      }
+    }
 
     @include onTablet {
-      bottom: -100%;
-      right: -40px;
+      width: max-content;
+      left: 0;
+      bottom: 0;
+      transform: translate(-29%, 250%) rotate(90deg);
+      z-index: 1000;
+
+      @for $i from 1 through 500 {
+        $min-width: 770px + ($i - 1) * 10px;
+        $top: 250% - ($i - 1) * 8%;
+      
+        @media (min-width: $min-width) {
+          transform: translate(-29%, $top) rotate(90deg);
+        }
+      }
+    }
+
+    @include onDesktop {
+      transform: translate(-29%, -320%) rotate(90deg);
+
+      @for $i from 1 through 43 {
+        $min-width: 1200px + ($i - 1) * 10px;
+        $top: -320% - ($i - 1) * 7%;
+      
+        @media (min-width: $min-width) {
+          transform: translate(-29%, $top) rotate(90deg);
+        }
+      }
     }
   }
 
@@ -447,6 +502,14 @@
   &__arrow {
     margin-left: 5px;
     transition: transform 0.3s;
+
+    &--rotated {
+      margin-left: 30px;
+      width: 7px;
+      height: 45px;
+      display: block;
+      transform: rotate(-90deg);
+    }
   }
 }
 
@@ -461,37 +524,68 @@
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
   z-index: 3;
-
-  &.appear {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
-  }
   
   &__content {
+    overflow: scroll;
     position: absolute;
-    padding: 50px;
+    padding: 30px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    width: 60%;
-    height: 50vh;
+    width: 80%;
+    height: 45vh;
     border-radius: 10px;
     font-family: 'Manrope';
     color: $full-black;
+
+    @media (min-width: 450px) {
+      padding: 40px;
+    }
+
+    @media (min-width: 670px) {
+      padding: 50px;
+    }
+
+    @include onTablet {
+      width: 60%;
+    }
   }
 
   &__title {
-    font-size: 36px;
+    font-size: 21px;
     font-weight: bold;
     display: inline-block;
-    margin-bottom: 60px;
+    margin-bottom: 12vh;
+
+    @media (min-width: 370px) {
+      font-size: 26px;
+    }
+
+    @media (min-width: 450px) {
+      font-size: 30px;
+    }
+
+    @media (min-width: 670px) {
+      font-size: 36px;
+    }
   }
 
   &__text {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 170%;
+
+    @media (min-width: 370px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 450px) {
+      font-size: 19px;
+    }
+
+    @media (min-width: 670px) {
+      font-size: 20px;
+    }
   }
 
   &__link {
@@ -502,10 +596,10 @@
 
   &__button {
     position: absolute;
-    right: 50px;
-    top: 50px;
-    width: 60px;
-    height: 60px;
+    right: 30px;
+    top: 30px;
+    width: 30px;
+    height: 30px;
     background-color: $full-black;
     border-radius: 50%;
     display: inline-flex;
@@ -513,6 +607,25 @@
     align-items: center;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
+
+    @media (min-width: 370px) {
+      width: 40px;
+      height: 40px;
+    }
+    
+    @media (min-width: 450px) {
+      top: 40px;
+      right: 40px;
+      width: 45px;
+      height: 45px;
+    }
+
+    @media (min-width: 670px) {
+      top: 50px;
+      right: 50px;
+      width: 60px;
+      height: 60px;
+    }
 
 
     &:hover {
@@ -522,9 +635,18 @@
   }
 
   &__multiply {
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
+
+    @media (min-width: 670px) {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
-
+.appear {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
