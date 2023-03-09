@@ -44,3 +44,13 @@
     margin-right: 135px;
   }
 }
+
+@mixin vertical-stick {
+  color: $black;
+  display: inline-block;
+  content: "";
+  height: 46px;
+  width: 18px;
+  border-left: 1px solid $black;
+  transform: translateY(5px) rotate(22deg);
+}
