@@ -53,4 +53,8 @@
   width: 18px;
   border-left: 1px solid $black;
   transform: translateY(5px) rotate(22deg);
+
+  @include onTablet {
+    width: 0;
+  }
 }

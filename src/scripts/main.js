@@ -1,17 +1,47 @@
 'use strict';
 
-function handleHeaderScroll() {
-  const header = document.querySelector('header');
-  const scrollTop = window.scrollY;
+//header life
 
-  if (scrollTop > 0) {
-    header.classList.add('header--filled');
-  } else {
-    header.classList.remove('header--filled');
+function headerVisibility() {
+  const header = document.querySelector('header');
+  if (!header) {
+    console.error('Could not find header element');
+    return;
   }
+
+  const headerOffset = header.offsetTop;
+  let lastScrollPosition = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.scrollY;
+
+    if (currentScrollPosition > lastScrollPosition && currentScrollPosition > 10) {
+      // Scrolling down
+      header.style.opacity = '0';
+      header.style.backgroundColor = 'transparent';
+      header.style.zIndex = '3';
+      header.style.visibility = 'hidden';
+    } else {
+      // Scrolling up
+      header.style.opacity = '1';
+      header.style.zIndex = '1';
+      header.style.visibility = 'initial';
+      if (currentScrollPosition < headerOffset + 10) {
+        header.style.backgroundColor = 'transparent';
+      } else {
+        header.style.backgroundColor = '#fff';
+        header.style.zIndex = '3';
+      }
+    }
+
+    lastScrollPosition = currentScrollPosition;
+  });
 }
 
-window.addEventListener('scroll', handleHeaderScroll);
+document.addEventListener('DOMContentLoaded', () => {
+  headerVisibility();
+});
+
 
 // reloading page when pressing logo
 
@@ -83,6 +113,33 @@ overlay.addEventListener('transitionend', function() {
   }
 });
 
+// article 2 life
 
+function addFadeInClass() {
+  const textContent = document.querySelector('.for-whom__text-content');
+  const textWithPseudo = document.querySelector('.for-whom__title--with-before');
+  const pictureOne = document.querySelector('.for-whom__picture-one');
 
+  // calculate the viewport height
+  const windowHeight = window.innerHeight;
+
+  // get the bounding rectangles of the elements
+  const textContentRect = textContent.getBoundingClientRect();
+  const textWithPseudoRect = textWithPseudo.getBoundingClientRect();
+  const pictureOneRect = pictureOne.getBoundingClientRect();
+
+  // check if the elements are in view
+  if (textContentRect.top < windowHeight && textContentRect.bottom >= 0) {
+    textContent.classList.add('for-whom__fade-in');
+  }
+  if (textWithPseudoRect.top < windowHeight && textWithPseudoRect.bottom >= 0) {
+    textWithPseudo.classList.add('for-whom__fade-in');
+  }
+  if (pictureOneRect.top < windowHeight && pictureOneRect.bottom >= 0) {
+    pictureOne.classList.add('for-whom__fade-in');
+  }
+}
+
+// listen for the scroll event and call the function
+window.addEventListener('scroll', addFadeInClass);
 
